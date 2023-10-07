@@ -102,6 +102,16 @@ const maps = {
       },
     },
     {
+      alias: "nk",
+      name: "NaverKorean",
+      search: "https://ko.dict.naver.com/#/search?query=",
+      compl: "https://ac-dict.naver.com/koko/ac?st=11&r_lt=11&q=",
+      callback: (response) => {
+        var res = JSON.parse(response.text);
+        return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
+      },
+    },
+    {
       alias: "cs",
       name: "chromestore",
       search: "https://chrome.google.com/webstore/search/",
