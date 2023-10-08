@@ -153,6 +153,11 @@ const maps = {
       callback: (response) =>
         JSON.parse(response.text).items[0].map((r) => r[0]),
     },
+    {
+      alias: "gt",
+      name: "GoogleTranslate",
+      search: "https://translate.google.com/?sl=auto&tl=ko&text=",
+    },
   ],
 };
 
