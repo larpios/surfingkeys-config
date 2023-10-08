@@ -167,6 +167,33 @@ maps.searchEngines.forEach((engine) => {
   );
 });
 
+const copyImage = async (image) => {
+  const img = await fetch(image.src)
+    .then((response) => response.blob())
+    .then((blob) => createImageBitmap(blob));
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0, img.width, img.height);
+  const pngBlob = await new Promise((resolve) =>
+    canvas.toBlob(resolve, "image/png")
+  );
+  await navigator.clipboard.write([
+    new ClipboardItem({ "image/png": pngBlob }),
+  ]);
+  api.Front.showBanner(`Copied: ${image.src}`);
+};
+
+api.mapkey("ye", "Copy Image to Clipboard", function () {
+  api.Hints.create("img[src]", copyImage);
+});
+
+api.mapkey("yme", "Copy Multiple Images to Clipboard", function () {
+  var linksToYank = [];
+  api.Hints.create("img[src]", copyImage, { multipleHits: true });
+});
+
 api.cmap("<Ctrl-j>", "<Tab>");
 api.cmap("<Ctrl-k>", "<Shift-Tab>");
 
