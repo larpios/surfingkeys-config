@@ -190,6 +190,12 @@ const copyImage = async (image) => {
   api.Front.showBanner(`Copied: ${image.src}`);
 };
 
+api.mapkey(";ys", "Copy Image Source", function () {
+  api.Hints.create("img[src]", (element) => {
+    api.Clipboard.write(element.src);
+  });
+});
+
 api.mapkey("ye", "Copy Image to Clipboard", function () {
   api.Hints.create("img[src]", copyImage);
 });
@@ -202,8 +208,6 @@ api.mapkey("yme", "Copy Multiple Images to Clipboard", function () {
 api.cmap("<Ctrl-j>", "<Tab>");
 api.cmap("<Ctrl-k>", "<Shift-Tab>");
 
-settings.scrollStepSize = 140;
-
 // an example to remove mapkey `Ctrl-i`
 // api.unmap("<ctrl-i>");
 
@@ -211,9 +215,11 @@ settings.scrollStepSize = 140;
 
 api.map("F", "gf");
 
+// settings
+settings.scrollStepSize = 140;
 settings.defaultSearchEngine = "br";
-
 settings.omnibarSuggestion = true;
+
 themes = {
   def: `
 .sk_theme {
