@@ -196,6 +196,12 @@ api.mapkey(";ys", "Copy Image Source", function () {
   });
 });
 
+api.mapkey(";gs", "Open Image Source", function () {
+  api.Hints.create("img[src]", (element) => {
+    api.tabOpenLink(element.src);
+  });
+});
+
 api.mapkey("ye", "Copy Image to Clipboard", function () {
   api.Hints.create("img[src]", copyImage);
 });
