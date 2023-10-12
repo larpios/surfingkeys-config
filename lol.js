@@ -223,7 +223,7 @@ api.map("F", "gf");
 
 // settings
 settings.scrollStepSize = 140;
-settings.defaultSearchEngine = "br";
+settings.defaultSearchEngine = "d";
 settings.omnibarSuggestion = true;
 
 themes = {
