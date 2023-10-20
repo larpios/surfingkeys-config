@@ -221,6 +221,46 @@ api.cmap("<Ctrl-k>", "<Shift-Tab>");
 
 api.map("F", "gf");
 
+api.Front.registerInlineQuery({
+  url: function (q) {
+    return `https://jisho.org/search/${q}`;
+  },
+  parseResult: function (res) {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(res.text, "text/html");
+    var result = doc.querySelector("#primary>div.exact_block");
+    if (result) {
+      result.querySelectorAll("div>span.furigana").forEach(function (e) {
+        br = document.createElement("br");
+        e.appendChild(br);
+      });
+      result.querySelectorAll("h4").forEach(function (e) {
+        e.remove();
+      });
+      result
+        .querySelectorAll("div>div.concept_light-status")
+        .forEach(function (e) {
+          e.remove();
+        });
+      result.querySelectorAll("div>a.light-details_link").forEach(function (e) {
+        e.remove();
+      });
+      result
+        .querySelectorAll("div>span.meaning-abstract")
+        .forEach(function (e) {
+          e.remove();
+        });
+      result
+        .querySelectorAll("div>span.supplemental_info")
+        .forEach(function (e) {
+          e.outerHTML = "&nbsp;" + e.outerHTML;
+        });
+      var exp = result.innerHTML;
+      return exp;
+    }
+  },
+});
+
 // settings
 settings.scrollStepSize = 140;
 settings.defaultSearchEngine = "d";
