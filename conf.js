@@ -47,7 +47,7 @@ const maps = {
         "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
       callback: (response) =>
         Object.values(JSON.parse(response.text).query.pages).map(
-          (p) => p.title
+          (p) => p.title,
         ),
     },
     {
@@ -58,7 +58,7 @@ const maps = {
         "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
       callback: (response) =>
         Object.values(JSON.parse(response.text).query.pages).map(
-          (p) => p.title
+          (p) => p.title,
         ),
     },
     {
@@ -158,6 +158,11 @@ const maps = {
       name: "GoogleTranslate",
       search: "https://translate.google.com/?sl=auto&tl=ko&text=",
     },
+    {
+      alias: "ph",
+      name: "Phind",
+      search: "https://www.phind.com/agent?q=",
+    },
   ],
 };
 
@@ -168,7 +173,7 @@ maps.searchEngines.forEach((engine) => {
     engine.search,
     engine.leader || "s",
     engine.compl || null,
-    engine.callback || null
+    engine.callback || null,
   );
 });
 
@@ -182,7 +187,7 @@ const copyImage = async (image) => {
   canvas.height = img.height;
   ctx.drawImage(img, 0, 0, img.width, img.height);
   const pngBlob = await new Promise((resolve) =>
-    canvas.toBlob(resolve, "image/png")
+    canvas.toBlob(resolve, "image/png"),
   );
   await navigator.clipboard.write([
     new ClipboardItem({ "image/png": pngBlob }),
