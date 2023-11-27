@@ -159,9 +159,14 @@ const maps = {
       search: "https://translate.google.com/?sl=auto&tl=ko&text=",
     },
     {
-      alias: "ph",
+      alias: "pp",
       name: "Phind",
       search: "https://www.phind.com/agent?q=",
+    },
+    {
+      alias: "ps",
+      name: "Phind",
+      search: "https://www.phind.com/search?q=",
     },
   ],
 };
@@ -212,7 +217,6 @@ api.mapkey("ye", "Copy Image to Clipboard", function () {
 });
 
 api.mapkey("yme", "Copy Multiple Images to Clipboard", function () {
-  var linksToYank = [];
   api.Hints.create("img[src]", copyImage, { multipleHits: true });
 });
 
