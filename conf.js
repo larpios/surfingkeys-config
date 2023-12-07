@@ -272,7 +272,7 @@ api.Front.registerInlineQuery({
 
 // settings
 settings.scrollStepSize = 140;
-settings.defaultSearchEngine = "d";
+settings.defaultSearchEngine = "g";
 settings.omnibarSuggestion = true;
 
 themes = {
