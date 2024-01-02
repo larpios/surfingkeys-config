@@ -255,7 +255,8 @@ api.mapkey(";yI", "Copy Multiple Images to Clipboard", function () {
 
 api.cmap("<Ctrl-j>", "<Tab>");
 api.cmap("<Ctrl-k>", "<Shift-Tab>");
-
+api.cmap('<Ctrl-n>', '<Tab>');
+api.cmap('<Ctrl-p>', '<Shift-Tab>');
 // an example to remove mapkey `Ctrl-i`
 // api.unmap("<ctrl-i>");
 
@@ -304,9 +305,12 @@ api.Front.registerInlineQuery({
 });
 
 // settings
-settings.scrollStepSize = 140;
-settings.defaultSearchEngine = "g";
-settings.omnibarSuggestion = true;
+with (settings) {
+    scrollStepSize = 140;
+    defaultSearchEngine = "g";
+    omnibarSuggestion = true;
+    hintExplicit = true;
+}
 
 themes = {
     def: `
@@ -1226,7 +1230,7 @@ padding: 0.2rem;
 };
 
 const hintsCss =
-    "font-size: 10pt; font-family: 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: 0px; color: #b7a1f9 !important; background: #191724; background-color: #2925418f";
+    "font-size: 10pt; font-family: 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: 0px; color: #b7a1f9 !important; background: #191724; background-color: #292541";
 
 api.Hints.style(hintsCss);
 api.Hints.style(hintsCss, "text");
