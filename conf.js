@@ -15,6 +15,7 @@ const unmaps = {
 with (unmaps) {
     mappings.forEach((mapping) => {
         api.unmap(mapping);
+    });
 
     searchEngines.forEach((engine) => {
         engine.aliases.forEach((alias) => {
