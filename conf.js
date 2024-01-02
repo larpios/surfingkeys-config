@@ -152,6 +152,16 @@ const maps = {
         },
         {
             leader: "d",
+            alias: "lm",
+            name: "LongmanDictinary",
+            search: "https://www.ldoceonline.com/dictionary/",
+            compl:
+            "https://www.ldoceonline.com/autocomplete/english/?q=",
+            callback: (response) =>
+                JSON.parse(response.text).results.map((r) => r.searchtext),
+        },
+        {
+            leader: "d",
             alias: "ji",
             name: "Jisho.org",
             search: "https://jisho.org/search/",
