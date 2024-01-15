@@ -54,7 +54,6 @@ const maps = {
                 ),
         },
         {
-            leader: "d",
             alias: "wt",
             name: "wiktionary",
             search: "https://en.wiktionary.org/w/index.php?search=",
@@ -66,7 +65,6 @@ const maps = {
                 ),
         },
         {
-            leader: "d",
             alias: "ne",
             name: "NaverEnglish",
             search: "https://en.dict.naver.com/#/search?query=",
@@ -77,7 +75,6 @@ const maps = {
             },
         },
         {
-            leader: "d",
             alias: "nk",
             name: "NaverKorean",
             search: "https://kr.dict.naver.com/#/search?query=",
@@ -88,7 +85,6 @@ const maps = {
             },
         },
         {
-            leader: "d",
             alias: "nh",
             name: "NaverHanja",
             search: "https://hanja.dict.naver.com/#/search?query=",
@@ -99,7 +95,6 @@ const maps = {
             },
         },
         {
-            leader: "d",
             alias: "nz",
             name: "NaverChinese",
             search: "https://zh.dict.naver.com/#/search?query=",
@@ -110,7 +105,7 @@ const maps = {
             },
         },
         {
-            leader: "d",
+            
             alias: "nj",
             name: "NaverJapanese",
             search: "https://ja.dict.naver.com/#/search?query=",
@@ -121,7 +116,6 @@ const maps = {
             },
         },
         {
-            leader: "d",
             alias: "nk",
             name: "NaverKorean",
             search: "https://ko.dict.naver.com/#/search?query=",
@@ -132,7 +126,6 @@ const maps = {
             },
         },
         {
-            leader: "d",
             alias: "cam",
             name: "CambridgeDictionary",
             search: "https://dictionary.cambridge.org/dictionary/english/",
@@ -141,7 +134,6 @@ const maps = {
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
-            leader: "d",
             alias: "ox",
             name: "OxfordDictionary",
             search: "https://www.oxfordlearnersdictionaries.com/definition/english/",
@@ -151,7 +143,6 @@ const maps = {
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
-            leader: "d",
             alias: "lm",
             name: "LongmanDictinary",
             search: "https://www.ldoceonline.com/dictionary/",
@@ -161,7 +152,6 @@ const maps = {
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
-            leader: "d",
             alias: "ji",
             name: "Jisho.org",
             search: "https://jisho.org/search/",
