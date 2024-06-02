@@ -2,7 +2,7 @@
 
 // unmaps
 const unmaps = {
-    mappings: ["<ctrl-j>"],
+    mappings: ["<ctrl-j>", "on"],
     searchEngines: [
         {
             leader: "s",
@@ -43,6 +43,7 @@ const maps = {
             callback: (response) => JSON.parse(response.text)[1],
         },
         {
+            leader: "s",
             alias: "wi",
             name: "Wikipedia",
             search: "https://en.wikipedia.org/wiki/",
@@ -54,6 +55,7 @@ const maps = {
                 ),
         },
         {
+            leader: "s",
             alias: "wt",
             name: "wiktionary",
             search: "https://en.wiktionary.org/w/index.php?search=",
@@ -65,6 +67,7 @@ const maps = {
                 ),
         },
         {
+            leader: "s",
             alias: "ne",
             name: "NaverEnglish",
             search: "https://en.dict.naver.com/#/search?query=",
@@ -75,6 +78,7 @@ const maps = {
             },
         },
         {
+            leader: "s",
             alias: "nk",
             name: "NaverKorean",
             search: "https://kr.dict.naver.com/#/search?query=",
@@ -85,6 +89,7 @@ const maps = {
             },
         },
         {
+            leader: "s",
             alias: "nh",
             name: "NaverHanja",
             search: "https://hanja.dict.naver.com/#/search?query=",
@@ -95,6 +100,7 @@ const maps = {
             },
         },
         {
+            leader: "s",
             alias: "nz",
             name: "NaverChinese",
             search: "https://zh.dict.naver.com/#/search?query=",
@@ -105,7 +111,7 @@ const maps = {
             },
         },
         {
-            
+            leader: "s",
             alias: "nj",
             name: "NaverJapanese",
             search: "https://ja.dict.naver.com/#/search?query=",
@@ -116,6 +122,7 @@ const maps = {
             },
         },
         {
+            leader: "s",
             alias: "nk",
             name: "NaverKorean",
             search: "https://ko.dict.naver.com/#/search?query=",
@@ -126,6 +133,7 @@ const maps = {
             },
         },
         {
+            leader: "s",
             alias: "cam",
             name: "CambridgeDictionary",
             search: "https://dictionary.cambridge.org/dictionary/english/",
@@ -134,6 +142,7 @@ const maps = {
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
+            leader: "s",
             alias: "ox",
             name: "OxfordDictionary",
             search: "https://www.oxfordlearnersdictionaries.com/definition/english/",
@@ -143,6 +152,7 @@ const maps = {
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
+            leader: "s",
             alias: "lm",
             name: "LongmanDictinary",
             search: "https://www.ldoceonline.com/dictionary/",
@@ -152,21 +162,25 @@ const maps = {
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
+            leader: "s",
             alias: "ji",
             name: "Jisho.org",
             search: "https://jisho.org/search/",
         },
         {
+            leader: "s",
             alias: "cs",
             name: "chromestore",
             search: "https://chrome.google.com/webstore/search/",
         },
         {
+            leader: "s",
             alias: "re",
             name: "reddit",
             search: "https://www.reddit.com/search?sort=relevance&t=all&q=",
         },
         {
+            leader: "s",
             alias: "na",
             name: "Naver",
             search:
@@ -177,6 +191,7 @@ const maps = {
                 JSON.parse(response.text).items[0].map((r) => r[0]),
         },
         {
+            leader: "s",
             alias: "gt",
             name: "GoogleTranslate",
             search: "https://translate.google.com/?sl=auto&tl=ko&text=",
@@ -187,6 +202,7 @@ const maps = {
             search: "https://www.phind.com/agent?q=",
         },
         {
+            leader: "s",
             alias: "ps",
             name: "Phind",
             search: "https://www.phind.com/search?q=",
