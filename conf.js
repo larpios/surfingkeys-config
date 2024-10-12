@@ -6,7 +6,7 @@ const unmaps = {
     searchEngines: [
         {
             leader: "s",
-            aliases: ["w", "b"],
+            aliases: ["w", "b", "s"],
         },
     ],
 };
@@ -213,7 +213,6 @@ const maps = {
             name: "Startpage",
             compl: "https://www.startpage.com/suggestions?sc=dnfgMyLbnsDw20&t=light&q=",
             callback: (response) => JSON.parse(response.text).suggestions.map((r) => r.text),
-
             search: "https://www.startpage.com/sp/search?q=",
         },
     ],
