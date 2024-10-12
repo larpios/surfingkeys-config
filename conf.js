@@ -48,7 +48,7 @@ const maps = {
             name: "Wikipedia",
             search: "https://en.wikipedia.org/wiki/",
             compl:
-            "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
             callback: (response) =>
                 Object.values(JSON.parse(response.text).query.pages).map(
                     (p) => p.title,
@@ -60,7 +60,7 @@ const maps = {
             name: "wiktionary",
             search: "https://en.wiktionary.org/w/index.php?search=",
             compl:
-            "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
+                "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
             callback: (response) =>
                 Object.values(JSON.parse(response.text).query.pages).map(
                     (p) => p.title,
@@ -147,7 +147,7 @@ const maps = {
             name: "OxfordDictionary",
             search: "https://www.oxfordlearnersdictionaries.com/definition/english/",
             compl:
-            "https://www.oxfordlearnersdictionaries.com/autocomplete/english/?q=",
+                "https://www.oxfordlearnersdictionaries.com/autocomplete/english/?q=",
             callback: (response) =>
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
@@ -157,7 +157,7 @@ const maps = {
             name: "LongmanDictinary",
             search: "https://www.ldoceonline.com/dictionary/",
             compl:
-            "https://www.ldoceonline.com/autocomplete/english/?q=",
+                "https://www.ldoceonline.com/autocomplete/english/?q=",
             callback: (response) =>
                 JSON.parse(response.text).results.map((r) => r.searchtext),
         },
@@ -184,9 +184,9 @@ const maps = {
             alias: "na",
             name: "Naver",
             search:
-            "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=",
+                "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=",
             compl:
-            "https://ac.search.naver.com/nx/ac?r_format=json&r_enc=UTF-8&r_unicode=0&con=0&frm=nv&ans=2&t_koreng=1&run=2&rev=4&q_enc=UTF-8&st=100&q=",
+                "https://ac.search.naver.com/nx/ac?r_format=json&r_enc=UTF-8&r_unicode=0&con=0&frm=nv&ans=2&t_koreng=1&run=2&rev=4&q_enc=UTF-8&st=100&q=",
             callback: (response) =>
                 JSON.parse(response.text).items[0].map((r) => r[0]),
         },
@@ -206,6 +206,15 @@ const maps = {
             alias: "ps",
             name: "Phind",
             search: "https://www.phind.com/search?q=",
+        },
+        {
+            leader: "s",
+            alias: "sp",
+            name: "Startpage",
+            compl: "https://www.startpage.com/suggestions?sc=dnfgMyLbnsDw20&t=light&q=",
+            callback: (response) => JSON.parse(response.text).suggestions.map((r) => r.text),
+
+            search: "https://www.startpage.com/sp/search?q=",
         },
     ],
 };
@@ -239,23 +248,23 @@ const copyImage = async (image) => {
     api.Front.showBanner(`Copied: ${image.src}`);
 };
 
-api.mapkey(";ys", "Copy Image Source", function () {
+api.mapkey(";ys", "Copy Image Source", function() {
     api.Hints.create("img[src]", (element) => {
         api.Clipboard.write(element.src);
     });
 });
 
-api.mapkey(";gs", "Open Image Source", function () {
+api.mapkey(";gs", "Open Image Source", function() {
     api.Hints.create("img[src]", (element) => {
         api.tabOpenLink(element.src);
     });
 });
 
-api.mapkey(";yi", "Copy Image to Clipboard", function () {
+api.mapkey(";yi", "Copy Image to Clipboard", function() {
     api.Hints.create("img[src]", copyImage);
 });
 
-api.mapkey(";yI", "Copy Multiple Images to Clipboard", function () {
+api.mapkey(";yI", "Copy Multiple Images to Clipboard", function() {
     api.Hints.create("img[src]", copyImage, { multipleHits: true });
 });
 
@@ -271,37 +280,37 @@ api.cmap('<Ctrl-p>', '<Shift-Tab>');
 api.map("F", "gf");
 
 api.Front.registerInlineQuery({
-    url: function (q) {
+    url: function(q) {
         return `https://jisho.org/search/${q}`;
     },
-    parseResult: function (res) {
+    parseResult: function(res) {
         var parser = new DOMParser();
         var doc = parser.parseFromString(res.text, "text/html");
         var result = doc.querySelector("#primary>div.exact_block");
         if (result) {
-            result.querySelectorAll("div>span.furigana").forEach(function (e) {
+            result.querySelectorAll("div>span.furigana").forEach(function(e) {
                 br = document.createElement("br");
                 e.appendChild(br);
             });
-            result.querySelectorAll("h4").forEach(function (e) {
+            result.querySelectorAll("h4").forEach(function(e) {
                 e.remove();
             });
             result
                 .querySelectorAll("div>div.concept_light-status")
-                .forEach(function (e) {
+                .forEach(function(e) {
                     e.remove();
                 });
-            result.querySelectorAll("div>a.light-details_link").forEach(function (e) {
+            result.querySelectorAll("div>a.light-details_link").forEach(function(e) {
                 e.remove();
             });
             result
                 .querySelectorAll("div>span.meaning-abstract")
-                .forEach(function (e) {
+                .forEach(function(e) {
                     e.remove();
                 });
             result
                 .querySelectorAll("div>span.supplemental_info")
-                .forEach(function (e) {
+                .forEach(function(e) {
                     e.outerHTML = "&nbsp;" + e.outerHTML;
                 });
             var exp = result.innerHTML;
