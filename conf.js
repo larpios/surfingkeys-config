@@ -215,6 +215,12 @@ const maps = {
             callback: (response) => JSON.parse(response.text).suggestions.map((r) => r.text),
             search: "https://www.startpage.com/sp/search?q=",
         },
+        {
+            leader: "s",
+            alias: "an",
+            name: "Anna's Archive",
+            search: "https://annas-archive.org/search?q="
+        }
     ],
 };
 
