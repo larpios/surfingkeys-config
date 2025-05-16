@@ -2,7 +2,8 @@
 
 // unmaps
 const unmaps = {
-    mappings: ["<ctrl-j>", "on", "<ctrl-a>", "<ctrl-e>"],
+    imaps: ["<ctrl-a>", "<ctrl-e>"],
+    nmaps: ["<ctrl-j>", "on"],
     searchEngines: [
         {
             leader: "s",
@@ -13,7 +14,10 @@ const unmaps = {
 
 
 with (unmaps) {
-    mappings.forEach((mapping) => {
+    imaps.forEach((mapping) => {
+        api.iunmap(mapping);
+    });
+    nmaps.forEach((mapping) => {
         api.unmap(mapping);
     });
 
