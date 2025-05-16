@@ -2,7 +2,7 @@
 
 // unmaps
 const unmaps = {
-    mappings: ["<ctrl-j>", "on"],
+    mappings: ["<ctrl-j>", "on", "<ctrl-a>", "<ctrl-e>"],
     searchEngines: [
         {
             leader: "s",
