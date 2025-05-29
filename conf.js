@@ -2,8 +2,8 @@
 
 // unmaps
 const unmaps = {
-    imaps: ["<ctrl-a>", "<ctrl-e>"],
-    nmaps: ["<ctrl-j>", "on"],
+    imaps: ["<Ctrl-a>", "<Ctrl-e>"],
+    nmaps: ["<Ctrl-j>", "on"],
     searchEngines: [
         {
             leader: "s",
