@@ -138,6 +138,15 @@ const maps = {
         },
         {
             leader: "s",
+            alias: "mw",
+            name: "MerriamWebster",
+            search: "https://www.merriam-webster.com/dictionary/",
+            compl: "https://www.merriam-webster.com/lapi/v1/mwol-search/autocomplete?search=",
+            callback: (response) =>
+                JSON.parse(response.text).docs.map((r) => r.word),
+        },
+        {
+            leader: "s",
             alias: "cam",
             name: "CambridgeDictionary",
             search: "https://dictionary.cambridge.org/dictionary/english/",
