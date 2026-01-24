@@ -7,6 +7,11 @@ api.unmap("<Ctrl-j>");
 api.unmap("on");
 api.unmap("om");
 
+// youtube unmaps
+["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "<", ">"].forEach((key) => {
+    api.unmap(key, /youtube\.com/i);
+});
+
 // remove default search aliases
 ["w", "b", "s"].forEach((alias) => {
     api.removeSearchAlias(alias, "s");
