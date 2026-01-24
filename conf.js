@@ -1,32 +1,24 @@
 // Description: My Surfingkeys config file.
 
 // unmaps
-const unmaps = {
-    imaps: ["<Ctrl-a>", "<Ctrl-e>"],
-    nmaps: ["<Ctrl-j>", "on"],
-    searchEngines: [
-        {
-            leader: "s",
-            aliases: ["w", "b", "s"],
-        },
-    ],
+api.iunmap("<Ctrl-a>");
+api.iunmap("<Ctrl-e>");
+api.unmap("<Ctrl-j>");
+api.unmap("on");
+api.unmap("om");
+
+// remove default search aliases
+["w", "b", "s"].forEach((alias) => {
+    api.removeSearchAlias(alias, "s");
+});
+
+const naverCallback = (response) => {
+    const res = JSON.parse(response.text);
+    return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
 };
 
-
-with (unmaps) {
-    imaps.forEach((mapping) => {
-        api.iunmap(mapping);
-    });
-    nmaps.forEach((mapping) => {
-        api.unmap(mapping);
-    });
-
-    searchEngines.forEach((engine) => {
-        engine.aliases.forEach((alias) => {
-            api.removeSearchAlias(alias, engine.leader);
-        });
-    });
-}
+const wikiCallback = (response) =>
+    Object.values(JSON.parse(response.text).query.pages).map((p) => p.title);
 
 const maps = {
     searchEngines: [
@@ -53,10 +45,7 @@ const maps = {
             search: "https://en.wikipedia.org/wiki/",
             compl:
                 "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
-            callback: (response) =>
-                Object.values(JSON.parse(response.text).query.pages).map(
-                    (p) => p.title,
-                ),
+            callback: wikiCallback,
         },
         {
             leader: "s",
@@ -65,10 +54,7 @@ const maps = {
             search: "https://en.wiktionary.org/w/index.php?search=",
             compl:
                 "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
-            callback: (response) =>
-                Object.values(JSON.parse(response.text).query.pages).map(
-                    (p) => p.title,
-                ),
+            callback: wikiCallback,
         },
         {
             leader: "s",
@@ -76,10 +62,7 @@ const maps = {
             name: "NaverEnglish",
             search: "https://en.dict.naver.com/#/search?query=",
             compl: "https://ac-dict.naver.com/enko/ac?st=11&r_lt=11&q=",
-            callback: (response) => {
-                var res = JSON.parse(response.text);
-                return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
-            },
+            callback: naverCallback,
         },
         {
             leader: "s",
@@ -87,10 +70,7 @@ const maps = {
             name: "NaverKorean",
             search: "https://kr.dict.naver.com/#/search?query=",
             compl: "https://ac-dict.naver.com/koko/ac?st=11&r_lt=11&q=",
-            callback: (response) => {
-                var res = JSON.parse(response.text);
-                return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
-            },
+            callback: naverCallback,
         },
         {
             leader: "s",
@@ -98,10 +78,7 @@ const maps = {
             name: "NaverHanja",
             search: "https://hanja.dict.naver.com/#/search?query=",
             compl: "https://ac-dict.naver.com/ccko/ac?st=11&r_lt=11&q=",
-            callback: (response) => {
-                var res = JSON.parse(response.text);
-                return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
-            },
+            callback: naverCallback,
         },
         {
             leader: "s",
@@ -109,10 +86,7 @@ const maps = {
             name: "NaverChinese",
             search: "https://zh.dict.naver.com/#/search?query=",
             compl: "https://ac-dict.naver.com/zhko/ac?st=11&r_lt=11&q=",
-            callback: (response) => {
-                var res = JSON.parse(response.text);
-                return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
-            },
+            callback: naverCallback,
         },
         {
             leader: "s",
@@ -120,21 +94,7 @@ const maps = {
             name: "NaverJapanese",
             search: "https://ja.dict.naver.com/#/search?query=",
             compl: "https://ac-dict.naver.com/jako/ac?st=11&r_lt=11&q=",
-            callback: (response) => {
-                var res = JSON.parse(response.text);
-                return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
-            },
-        },
-        {
-            leader: "s",
-            alias: "nk",
-            name: "NaverKorean",
-            search: "https://ko.dict.naver.com/#/search?query=",
-            compl: "https://ac-dict.naver.com/koko/ac?st=11&r_lt=11&q=",
-            callback: (response) => {
-                var res = JSON.parse(response.text);
-                return res.items[0].concat(res.items[1]).map((r) => r[0][0]);
-            },
+            callback: naverCallback,
         },
         {
             leader: "s",
@@ -338,12 +298,10 @@ api.Front.registerInlineQuery({
 });
 
 // settings
-with (settings) {
-    scrollStepSize = 140;
-    defaultSearchEngine = "g";
-    omnibarSuggestion = true;
-    hintExplicit = true;
-}
+settings.scrollStepSize = 140;
+settings.defaultSearchEngine = "g";
+settings.omnibarSuggestion = true;
+settings.hintExplicit = true;
 
 themes = {
     rose_pine: `
