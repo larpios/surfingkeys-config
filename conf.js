@@ -198,6 +198,12 @@ const maps = {
             alias: "an",
             name: "Anna's Archive",
             search: "https://annas-archive.li/search?q="
+        },
+        {
+            leader: "a",
+            alias: "wa",
+            name: "Web Archive",
+            search: "https://web.archive.org/save/"
         }
     ],
 };

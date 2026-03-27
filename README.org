@@ -1,0 +1,5 @@
+* Larpi's Surfingkeys Config
+[[https://github.com/brookhong/Surfingkeys][Surfingkeys]] is a browser extension that allows you to use keyboard shortcuts to perform actions in the browser. It's a great way to save time and make your browser more efficient.
+
+This repo is my configurations for Surfingkeys.
+
