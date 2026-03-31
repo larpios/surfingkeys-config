@@ -48,8 +48,7 @@ const maps = {
             alias: "wi",
             name: "Wikipedia",
             search: "https://en.wikipedia.org/wiki/",
-            compl:
-                "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
+            compl: "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
             callback: wikiCallback,
         },
         {
@@ -57,8 +56,7 @@ const maps = {
             alias: "wt",
             name: "wiktionary",
             search: "https://en.wiktionary.org/w/index.php?search=",
-            compl:
-                "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
+            compl: "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
             callback: wikiCallback,
         },
         {
@@ -107,8 +105,7 @@ const maps = {
             name: "MerriamWebster",
             search: "https://www.merriam-webster.com/dictionary/",
             compl: "https://www.merriam-webster.com/lapi/v1/mwol-search/autocomplete?search=",
-            callback: (response) =>
-                JSON.parse(response.text).docs.map((r) => r.word),
+            callback: (response) => JSON.parse(response.text).docs.map((r) => r.word),
         },
         {
             leader: "s",
@@ -116,28 +113,23 @@ const maps = {
             name: "CambridgeDictionary",
             search: "https://dictionary.cambridge.org/dictionary/english/",
             compl: "https://dictionary.cambridge.org/english/?q=",
-            callback: (response) =>
-                JSON.parse(response.text).results.map((r) => r.searchtext),
+            callback: (response) => JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
             leader: "s",
             alias: "ox",
             name: "OxfordDictionary",
             search: "https://www.oxfordlearnersdictionaries.com/definition/english/",
-            compl:
-                "https://www.oxfordlearnersdictionaries.com/autocomplete/english/?q=",
-            callback: (response) =>
-                JSON.parse(response.text).results.map((r) => r.searchtext),
+            compl: "https://www.oxfordlearnersdictionaries.com/autocomplete/english/?q=",
+            callback: (response) => JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
             leader: "s",
             alias: "lm",
             name: "LongmanDictinary",
             search: "https://www.ldoceonline.com/dictionary/",
-            compl:
-                "https://www.ldoceonline.com/autocomplete/english/?q=",
-            callback: (response) =>
-                JSON.parse(response.text).results.map((r) => r.searchtext),
+            compl: "https://www.ldoceonline.com/autocomplete/english/?q=",
+            callback: (response) => JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
             leader: "s",
@@ -161,12 +153,9 @@ const maps = {
             leader: "s",
             alias: "na",
             name: "Naver",
-            search:
-                "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=",
-            compl:
-                "https://ac.search.naver.com/nx/ac?r_format=json&r_enc=UTF-8&r_unicode=0&con=0&frm=nv&ans=2&t_koreng=1&run=2&rev=4&q_enc=UTF-8&st=100&q=",
-            callback: (response) =>
-                JSON.parse(response.text).items[0].map((r) => r[0]),
+            search: "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=",
+            compl: "https://ac.search.naver.com/nx/ac?r_format=json&r_enc=UTF-8&r_unicode=0&con=0&frm=nv&ans=2&t_koreng=1&run=2&rev=4&q_enc=UTF-8&st=100&q=",
+            callback: (response) => JSON.parse(response.text).items[0].map((r) => r[0]),
         },
         {
             leader: "s",
@@ -197,14 +186,14 @@ const maps = {
             leader: "s",
             alias: "an",
             name: "Anna's Archive",
-            search: "https://annas-archive.li/search?q="
+            search: "https://annas-archive.li/search?q=",
         },
         {
             leader: "a",
             alias: "wa",
             name: "Web Archive",
-            search: "https://web.archive.org/save/"
-        }
+            search: "https://web.archive.org/save/",
+        },
     ],
 };
 
@@ -228,39 +217,42 @@ const copyImage = async (image) => {
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
-    const pngBlob = await new Promise((resolve) =>
-        canvas.toBlob(resolve, "image/png"),
-    );
-    await navigator.clipboard.write([
-        new ClipboardItem({ "image/png": pngBlob }),
-    ]);
+    const pngBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
     api.Front.showBanner(`Copied: ${image.src}`);
 };
 
-api.mapkey(";ys", "Copy Image Source", function() {
+api.mapkey("<Ctrl-o>", "Go back in history", function () {
+    history.go(-1);
+});
+api.mapkey("<Ctrl-i>", "Go forward in history", function () {
+    history.go(1);
+});
+
+api.mapkey(";ys", "Copy Image Source", function () {
     api.Hints.create("img[src]", (element) => {
         api.Clipboard.write(element.src);
     });
 });
 
-api.mapkey(";gs", "Open Image Source", function() {
+api.mapkey(";gs", "Open Image Source", function () {
     api.Hints.create("img[src]", (element) => {
         api.tabOpenLink(element.src);
     });
 });
 
-api.mapkey(";yi", "Copy Image to Clipboard", function() {
+api.mapkey(";yi", "Copy Image to Clipboard", function () {
     api.Hints.create("img[src]", copyImage);
 });
 
-api.mapkey(";yI", "Copy Multiple Images to Clipboard", function() {
+api.mapkey(";yI", "Copy Multiple Images to Clipboard", function () {
     api.Hints.create("img[src]", copyImage, { multipleHits: true });
 });
 
 api.cmap("<Ctrl-j>", "<Tab>");
 api.cmap("<Ctrl-k>", "<Shift-Tab>");
-api.cmap('<Ctrl-n>', '<Tab>');
-api.cmap('<Ctrl-p>', '<Shift-Tab>');
+api.cmap("<Ctrl-n>", "<Tab>");
+api.cmap("<Ctrl-p>", "<Shift-Tab>");
 // an example to remove mapkey `Ctrl-i`
 // api.unmap("<ctrl-i>");
 
@@ -269,39 +261,33 @@ api.cmap('<Ctrl-p>', '<Shift-Tab>');
 api.map("F", "gf");
 
 api.Front.registerInlineQuery({
-    url: function(q) {
+    url: function (q) {
         return `https://jisho.org/search/${q}`;
     },
-    parseResult: function(res) {
+    parseResult: function (res) {
         var parser = new DOMParser();
         var doc = parser.parseFromString(res.text, "text/html");
         var result = doc.querySelector("#primary>div.exact_block");
         if (result) {
-            result.querySelectorAll("div>span.furigana").forEach(function(e) {
+            result.querySelectorAll("div>span.furigana").forEach(function (e) {
                 br = document.createElement("br");
                 e.appendChild(br);
             });
-            result.querySelectorAll("h4").forEach(function(e) {
+            result.querySelectorAll("h4").forEach(function (e) {
                 e.remove();
             });
-            result
-                .querySelectorAll("div>div.concept_light-status")
-                .forEach(function(e) {
-                    e.remove();
-                });
-            result.querySelectorAll("div>a.light-details_link").forEach(function(e) {
+            result.querySelectorAll("div>div.concept_light-status").forEach(function (e) {
                 e.remove();
             });
-            result
-                .querySelectorAll("div>span.meaning-abstract")
-                .forEach(function(e) {
-                    e.remove();
-                });
-            result
-                .querySelectorAll("div>span.supplemental_info")
-                .forEach(function(e) {
-                    e.outerHTML = "&nbsp;" + e.outerHTML;
-                });
+            result.querySelectorAll("div>a.light-details_link").forEach(function (e) {
+                e.remove();
+            });
+            result.querySelectorAll("div>span.meaning-abstract").forEach(function (e) {
+                e.remove();
+            });
+            result.querySelectorAll("div>span.supplemental_info").forEach(function (e) {
+                e.outerHTML = "&nbsp;" + e.outerHTML;
+            });
             var exp = result.innerHTML;
             return exp;
         }
