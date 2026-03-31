@@ -295,6 +295,7 @@ api.Front.registerInlineQuery({
 });
 
 // settings
+settings.smoothScroll = false;
 settings.scrollStepSize = 140;
 settings.defaultSearchEngine = "g";
 settings.omnibarSuggestion = true;
