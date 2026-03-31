@@ -194,6 +194,18 @@ const maps = {
             name: "Web Archive",
             search: "https://web.archive.org/save/",
         },
+        {
+            leader: "s",
+            alias: "kd",
+            name: "Kagi Dictionary",
+            search: "https://translate.kagi.com/dictionary?to=en&from=auto&word=",
+        },
+        {
+            leader: "s",
+            alias: "kt",
+            name: "Kagi Translate",
+            search: "https://translate.kagi.com/?to=en&from=auto&text=",
+        },
     ],
 };
 
