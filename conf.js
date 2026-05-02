@@ -33,7 +33,8 @@ const maps = {
             name: "duckduckgo",
             search: "https://duckduckgo.com/?q=",
             compl: "https://duckduckgo.com/ac/?q=",
-            callback: (response) => JSON.parse(response.text).map((r) => r.phrase),
+            callback: (response) =>
+                JSON.parse(response.text).map((r) => r.phrase),
         },
         {
             leader: "s",
@@ -105,7 +106,8 @@ const maps = {
             name: "MerriamWebster",
             search: "https://www.merriam-webster.com/dictionary/",
             compl: "https://www.merriam-webster.com/lapi/v1/mwol-search/autocomplete?search=",
-            callback: (response) => JSON.parse(response.text).docs.map((r) => r.word),
+            callback: (response) =>
+                JSON.parse(response.text).docs.map((r) => r.word),
         },
         {
             leader: "s",
@@ -113,7 +115,8 @@ const maps = {
             name: "CambridgeDictionary",
             search: "https://dictionary.cambridge.org/dictionary/english/",
             compl: "https://dictionary.cambridge.org/english/?q=",
-            callback: (response) => JSON.parse(response.text).results.map((r) => r.searchtext),
+            callback: (response) =>
+                JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
             leader: "s",
@@ -121,7 +124,8 @@ const maps = {
             name: "OxfordDictionary",
             search: "https://www.oxfordlearnersdictionaries.com/definition/english/",
             compl: "https://www.oxfordlearnersdictionaries.com/autocomplete/english/?q=",
-            callback: (response) => JSON.parse(response.text).results.map((r) => r.searchtext),
+            callback: (response) =>
+                JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
             leader: "s",
@@ -129,7 +133,8 @@ const maps = {
             name: "LongmanDictinary",
             search: "https://www.ldoceonline.com/dictionary/",
             compl: "https://www.ldoceonline.com/autocomplete/english/?q=",
-            callback: (response) => JSON.parse(response.text).results.map((r) => r.searchtext),
+            callback: (response) =>
+                JSON.parse(response.text).results.map((r) => r.searchtext),
         },
         {
             leader: "s",
@@ -155,7 +160,8 @@ const maps = {
             name: "Naver",
             search: "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=",
             compl: "https://ac.search.naver.com/nx/ac?r_format=json&r_enc=UTF-8&r_unicode=0&con=0&frm=nv&ans=2&t_koreng=1&run=2&rev=4&q_enc=UTF-8&st=100&q=",
-            callback: (response) => JSON.parse(response.text).items[0].map((r) => r[0]),
+            callback: (response) =>
+                JSON.parse(response.text).items[0].map((r) => r[0]),
         },
         {
             leader: "s",
@@ -179,7 +185,8 @@ const maps = {
             alias: "sp",
             name: "Startpage",
             compl: "https://www.startpage.com/suggestions?sc=dnfgMyLbnsDw20&t=light&q=",
-            callback: (response) => JSON.parse(response.text).suggestions.map((r) => r.text),
+            callback: (response) =>
+                JSON.parse(response.text).suggestions.map((r) => r.text),
             search: "https://www.startpage.com/sp/search?q=",
         },
         {
@@ -229,8 +236,12 @@ const copyImage = async (image) => {
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
-    const pngBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
-    await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+    const pngBlob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, "image/png"),
+    );
+    await navigator.clipboard.write([
+        new ClipboardItem({ "image/png": pngBlob }),
+    ]);
     api.Front.showBanner(`Copied: ${image.src}`);
 };
 
@@ -288,18 +299,26 @@ api.Front.registerInlineQuery({
             result.querySelectorAll("h4").forEach(function (e) {
                 e.remove();
             });
-            result.querySelectorAll("div>div.concept_light-status").forEach(function (e) {
-                e.remove();
-            });
-            result.querySelectorAll("div>a.light-details_link").forEach(function (e) {
-                e.remove();
-            });
-            result.querySelectorAll("div>span.meaning-abstract").forEach(function (e) {
-                e.remove();
-            });
-            result.querySelectorAll("div>span.supplemental_info").forEach(function (e) {
-                e.outerHTML = "&nbsp;" + e.outerHTML;
-            });
+            result
+                .querySelectorAll("div>div.concept_light-status")
+                .forEach(function (e) {
+                    e.remove();
+                });
+            result
+                .querySelectorAll("div>a.light-details_link")
+                .forEach(function (e) {
+                    e.remove();
+                });
+            result
+                .querySelectorAll("div>span.meaning-abstract")
+                .forEach(function (e) {
+                    e.remove();
+                });
+            result
+                .querySelectorAll("div>span.supplemental_info")
+                .forEach(function (e) {
+                    e.outerHTML = "&nbsp;" + e.outerHTML;
+                });
             var exp = result.innerHTML;
             return exp;
         }
@@ -312,13 +331,8 @@ settings.scrollStepSize = 140;
 settings.defaultSearchEngine = "g";
 settings.omnibarSuggestion = true;
 settings.hintExplicit = true;
-
-// THEME //
-// name: Rosé Pine
-// author: thuanowa
-// license: unlicense
-// upstream: https://github.com/rose-pine/surfingkeys/blob/main/dist/rose-pine.conf
-// blurb: All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+// To always use omnibar for searching tabs
+settings.tabsThreshold = 0;
 
 const hintsCss =
     "font-size: 13pt; font-family: 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: 0px; color: #e0def4 !important; background: #191724; background-color: #191724";
