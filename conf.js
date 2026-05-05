@@ -254,6 +254,13 @@ api.mapkey("<Ctrl-i>", "Go forward in history", function () {
     history.go(1);
 });
 
+api.mapkey("<Ctrl-O>", "Hint and open any URL (links and plain text)", function () {
+    api.Hints.create(/(https?:\/\/[^\s]+)/ig, function (element) {
+        const url = element[2] || element[0] || element.href || element.innerText;
+        api.tabOpenLink(url);
+    });
+});
+
 api.mapkey(";ys", "Copy Image Source", function () {
     api.Hints.create("img[src]", (element) => {
         api.Clipboard.write(element.src);
@@ -292,10 +299,7 @@ api.mapkey(
             const data = await response.json();
             const entries = data.slice(1);
             const sorted = entries.sort(function (a, b) {
-                const dateA = new Date(a[1]);
                 return b[1].localeCompare(a[1]);
-                const dateB = new Date(b[1]);
-                return dateA - dateB;
             });
 
             const url = `https://web.archive.org/web/${sorted[0][1]}/${encodedCurrentUrl}`;
