@@ -6,6 +6,8 @@ api.iunmap("<Ctrl-e>");
 api.unmap("<Ctrl-j>");
 api.unmap("on");
 api.unmap("om");
+api.map(";wt", ";w");
+api.unmap(";w");
 
 // youtube unmaps
 ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "<", ">"].forEach((key) => {
@@ -271,6 +273,38 @@ api.mapkey(";yi", "Copy Image to Clipboard", function () {
 api.mapkey(";yI", "Copy Multiple Images to Clipboard", function () {
     api.Hints.create("img[src]", copyImage, { multipleHits: true });
 });
+
+api.mapkey(";wa", "Save current page to Web Archive", function () {
+    api.tabOpenLink("https://web.archive.org/save/" + window.location.href);
+});
+
+api.mapkey(
+    ";wc",
+    "View latest Web Archive for current page",
+    async function () {
+        try {
+            const encodedCurrentUrl = encodeURIComponent(window.location.href);
+            const response = await fetch(
+                "https://web.archive.org/cdx/search/cdx?url=" +
+                    encodedCurrentUrl +
+                    "&output=json",
+            );
+            const data = await response.json();
+            const entries = data.slice(1);
+            const sorted = entries.sort(function (a, b) {
+                const dateA = new Date(a[1]);
+                return b[1].localeCompare(a[1]);
+                const dateB = new Date(b[1]);
+                return dateA - dateB;
+            });
+
+            const url = `https://web.archive.org/web/${sorted[0][1]}/${encodedCurrentUrl}`;
+            api.tabOpenLink(url);
+        } catch (error) {
+            api.Front.showBanner("Error checking Web Archive availability.");
+        }
+    },
+);
 
 api.cmap("<Ctrl-j>", "<Tab>");
 api.cmap("<Ctrl-k>", "<Shift-Tab>");
