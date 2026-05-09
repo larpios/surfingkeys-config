@@ -204,6 +204,12 @@ const maps = {
             search: "https://web.archive.org/save/",
         },
         {
+            leader: "a",
+            alias: "wm",
+            name: "Wayback Machine",
+            search: "https://web.archive.org/web/20260000000000*/",
+        },
+        {
             leader: "s",
             alias: "kd",
             name: "Kagi Dictionary",
