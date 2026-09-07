@@ -195,7 +195,7 @@ const maps = {
             leader: "s",
             alias: "an",
             name: "Anna's Archive",
-            search: "https://annas-archive.li/search?q=",
+            search: "https://annas-archive.gd/search?q=",
         },
         {
             leader: "a",
