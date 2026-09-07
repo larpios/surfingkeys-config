@@ -9,8 +9,8 @@ api.unmap("om");
 api.map(";wt", ";w");
 api.unmap(";w");
 
-// youtube unmaps
-["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "<", ">"].forEach((key) => {
+// YouTube unmaps
+["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "<", ">", 'j', 'k', 'l'].forEach((key) => {
     api.unmap(key, /youtube\.com/i);
 });
 
