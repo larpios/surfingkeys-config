@@ -172,17 +172,6 @@ const maps = {
             search: "https://translate.google.com/?sl=auto&tl=ko&text=",
         },
         {
-            alias: "pp",
-            name: "Phind",
-            search: "https://www.phind.com/agent?q=",
-        },
-        {
-            leader: "s",
-            alias: "ps",
-            name: "Phind",
-            search: "https://www.phind.com/search?q=",
-        },
-        {
             leader: "s",
             alias: "sp",
             name: "Startpage",
