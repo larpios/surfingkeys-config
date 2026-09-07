@@ -167,9 +167,9 @@ const maps = {
         },
         {
             leader: "s",
-            alias: "gt",
+            alias: "tg",
             name: "GoogleTranslate",
-            search: "https://translate.google.com/?sl=auto&tl=ko&text=",
+            search: "https://translate.google.com/?sl=auto&tl=en&text=",
         },
         {
             leader: "s",
