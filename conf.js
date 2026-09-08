@@ -10,7 +10,7 @@ api.map(";wt", ";w");
 api.unmap(";w");
 
 // YouTube unmaps
-["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "<", ">", 'j', 'k', 'l'].forEach((key) => {
+["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "<", ">", 'j', 'k', 'l', '.'].forEach((key) => {
     api.unmap(key, /youtube\.com/i);
 });
 
