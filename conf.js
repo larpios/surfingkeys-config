@@ -75,7 +75,7 @@ const maps = {
             leader: "s",
             alias: "nk",
             name: "NaverKorean",
-            search: "https://kr.dict.naver.com/#/search?query=",
+            search: "https://ko.dict.naver.com/#/search?query=",
             compl: "https://ac-dict.naver.com/koko/ac?st=11&r_lt=11&q=",
             callback: naverCallback,
         },
